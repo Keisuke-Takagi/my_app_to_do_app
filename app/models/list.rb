@@ -1,3 +1,3 @@
 class List < ApplicationRecord
-  
+  belongs_to :group
 end
