@@ -30,11 +30,13 @@ body{
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  &__user-group-name-box{
+    color: white;
+    font-size: 20px;
+    
+  }
 }
-.user_name{
-  color: white;
-  font-size: 20px;
-}
+
 .nav-top-link{
   list-style: none;
   color: white;

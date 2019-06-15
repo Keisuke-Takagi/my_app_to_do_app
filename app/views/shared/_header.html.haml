@@ -1,7 +1,11 @@
 %header.header
   %nav.nav
     %ul.header_menu
-      %li.user_name aaさん
+      .header_menu__user-group-name-box
+        - if user_signed_in?
+          = current_user.name
+          %li ii
+        - else
       %li.header_menu_title
         %a.nav-top-link{:href => "/"} todoapp
       %li
