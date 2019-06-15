@@ -1,0 +1,12 @@
+= render 'shared/header'
+.group_wrapper
+  .container
+    .content
+      .group_form
+        .group_form__wrapper
+          .new_group_form
+            = form_for @group do |f|
+              .new_group__field
+                = f.text_field :name, maxlength: "8", class: "group-name-input", placeholder: "グループ名の入力"
+              .submit_button_wrapper
+                = f.submit "グループを作成", class: "btn"
