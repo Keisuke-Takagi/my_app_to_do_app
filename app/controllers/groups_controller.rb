@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group
+  before_action :set_group, only: [:edit, :update]
   def index
   end
   
@@ -11,12 +11,17 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      
+      redirect_to   group_lists_path
     else
       render :new
     end
   end
 
+  def edit
+  end
+  
+  def uodate
+  end
   private
    def group_params
       params.require(:group).permit(:name, { :user_ids => [] })
