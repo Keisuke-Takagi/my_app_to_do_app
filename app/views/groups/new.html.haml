@@ -9,4 +9,5 @@
               .new_group__field
                 = f.text_field :name, maxlength: "8", class: "group-name-input", placeholder: "グループ名の入力"
               .submit_button_wrapper
+                %input{class: "chat-group-users__input",name:  "group[user_ids][]", type:  "hidden", :value => current_user.id}
                 = f.submit "グループを作成", class: "btn"
