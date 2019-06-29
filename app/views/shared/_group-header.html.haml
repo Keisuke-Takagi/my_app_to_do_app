@@ -3,8 +3,10 @@
     %ul.header_menu
       .header_menu__user-group-name-box
         - if user_signed_in?
-          = current_user.name
-          %li ここにグループ名
+          - @group.users.each do |mem|
+            = mem.name
+          %li 
+            = @group.name
         - else
       %li.header_menu_title
         %a.nav-top-link{:href => "/"} todoapp

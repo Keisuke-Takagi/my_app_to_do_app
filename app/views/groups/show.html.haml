@@ -1,0 +1,36 @@
+= render 'shared/group-header'
+            
+.content_main
+  = render 'shared/sidebar'
+  -# サイドバーで何かする
+  .task_wrapper{class: "col-lg"}
+    .task-box
+      .task-header
+        .task_title
+          メルカリ
+        %ul.task_icons
+          %li.task_header_menu_tag
+            %a.aaa 
+            = fa_icon 'edit', class: 'edit_title_icon' 
+          %li
+            %a.edit_button
+            = fa_icon 'trash', class: 'trash_title_icon'
+      .task
+        aaa
+      .task
+        bbb
+    .task-box
+      .task-header
+        .task_title
+          個人アプリ
+        %ul.task_icons
+          %li.task_header_menu_tag
+            %a.aaa 
+            = fa_icon 'edit', class: 'edit_title_icon' 
+          %li
+            %a.edit_button
+            = fa_icon 'trash', class: 'trash_title_icon'
+      .task
+        aaa
+      .task
+      bbb

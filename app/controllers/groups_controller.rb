@@ -1,30 +1,32 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:edit, :update]
+  before_action :set_group, only: [:edit, :update, :show]
   def index
+
   end
-  
+
   def new
     @group = Group.new
     @group.users << current_user
-
   end
 
   def create
     @group = Group.new(group_params)
-    binding.pry
     if @group.save
-      redirect_to  root_path
+      redirect_to  groups_path
     else
       render :new
     end
   end
 
+  def show
+  end
 
   def edit
   end
-  
+
   def update
   end
+
 
   private
    def group_params
@@ -32,5 +34,8 @@ class GroupsController < ApplicationController
    end
    def set_group
       @group = Group.find(params[:id])
+   end
+   def set_list
+    @list = List.find()
    end
 end

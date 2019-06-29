@@ -19,17 +19,18 @@
                     = f.label "グループメンバーを追加", class: "new-group-form__box__field-group__field__member-search__tag"
                     %input.new-group-form__box__field-group__field__member-search__text-field{placeholder: "追加するユーザー名", type:  "text"}
                   .new-group-form__box__field-group__field__member-list
-                    = f.label "招待するメンバー"               
+                    = f.label "招待するメンバー"
+                    = f.collection_check_boxes :user_ids, User.all, :id, :name               
                     - @group.users.each do |mem|
-                      #new-group-users
-                        - if mem == current_user
-                          %p.new-group-current-user__name
-                            = mem.name
-                          %input{class: "",name:  "group[user_ids][]", type:  "hidden", value: current_user.id}
-                        - else
-                          %input{class: "", name: "group[user_ids[]", type: "hidden", value: mem.id}
-                          %p.new-group-current-user__name
-                            = mem.name
+                      -# #new-group-users
+                      -#   - if mem == current_user
+                      -#     %p.new-group-current-user__name
+                      -#       = mem.name
+                      -#     %input{class: "",name:  "group[user_ids][]", type:  "hidden", value: current_user.id}
+                      -#   - else
+                      -#     %input{class: "", name: "group[user_ids[]", type: "hidden", value: mem.id}
+                      -#     %p.new-group-current-user__name
+                      -#       = mem.name
         .group-wrapper__container__content__box
           = f.submit "作成", class: "new-group-form__box__field-group__field__submit"
 
