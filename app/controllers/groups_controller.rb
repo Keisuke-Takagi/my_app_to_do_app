@@ -19,6 +19,9 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @list = List.new
+    @group_id = params[:id]
+    @lists = List.where(group_id: @group_id)
   end
 
   def edit
@@ -36,6 +39,7 @@ class GroupsController < ApplicationController
       @group = Group.find(params[:id])
    end
    def set_list
-    @list = List.find()
+    @lists = List.find(group_id: params[:id])
    end
+
 end

@@ -3,34 +3,86 @@
 .content_main
   = render 'shared/sidebar'
   -# サイドバーで何かする
-  .task_wrapper{class: "col-lg"}
-    .task-box
-      .task-header
-        .task_title
-          メルカリ
-        %ul.task_icons
-          %li.task_header_menu_tag
-            %a.aaa 
-            = fa_icon 'edit', class: 'edit_title_icon' 
-          %li
-            %a.edit_button
-            = fa_icon 'trash', class: 'trash_title_icon'
-      .task
-        aaa
-      .task
-        bbb
-    .task-box
-      .task-header
-        .task_title
-          個人アプリ
-        %ul.task_icons
-          %li.task_header_menu_tag
-            %a.aaa 
-            = fa_icon 'edit', class: 'edit_title_icon' 
-          %li
-            %a.edit_button
-            = fa_icon 'trash', class: 'trash_title_icon'
-      .task
-        aaa
-      .task
-      bbb
+  .content_main__task_wrapper{class: "col-lg"}
+    - if @lists.present?
+      - @lists.each do |list|
+        .task-box
+          .task-header
+            .task_title
+              メルカリ
+            %ul.task_icons
+              %li.task_header_menu_tag
+                %a.aaa 
+                = fa_icon 'edit', class: 'edit_title_icon' 
+              %li
+                %a.edit_button
+                = fa_icon 'trash', class: 'trash_title_icon'
+          .task
+            aaa
+          .task
+            bbb
+        .task-box
+          .task-header
+            .task_title
+              個人アプリ
+            %ul.task_icons
+              %li.task_header_menu_tag
+                %a.aaa 
+                = fa_icon 'edit', class: 'edit_title_icon' 
+              %li
+                %a.edit_button
+                = fa_icon 'trash', class: 'trash_title_icon'
+          .task
+            aaa
+          .task
+          bbb
+    - else
+      = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
+        %button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "task-box-add"}
+          リストを追加
+        #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog.modal-lg{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5#label1.modal-title 
+                  = f.text_field :text 
+                  = f.hidden_field :group_id, value: @group_id
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                Modal body
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+                %input.btn.btn-primary{:type => "submit", value: "Send"} OK
+
+
+
+
+.container.text-center
+  %button.btn.btn-primary.mt-5{"data-target" => "#post", "data-toggle" => "modal", :type => "button"} つぶやきを投稿する
+  #post.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        = form_with model: @group do |f|
+          .modal-body
+            = f.text_field :body, class: "form-control", placeholder: "投稿内容を入力"
+          .modal-footer
+            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
+            = f.submit "投稿する", class: "btn btn-primary"
+%button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button"}
+  Launch demo modal
+#modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#label1.modal-title Modal title
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        Modal body
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} OK
+-# = form_with model: @group do |f|
+-#   .modal-body
+-#     = f.text_field :name, class: "form-control", placeholder: "リストフォーム" 

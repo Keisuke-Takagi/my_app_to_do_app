@@ -4,6 +4,34 @@
 .content_main{
   width: 100%;
   height: 100%;
+  &__task_wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: burlywood;
+    float: right;
+    padding: 15px 15px 15px 20px;
+    .task-box{
+      min-width: 24.4%;
+      min-height: 100px;
+      background-color: gray;
+      display: inline-block;
+      padding-right: 3px;
+    }
+    #task-box-add{
+      min-width: 24.4%;
+      height: 70px;
+      background-color: rgba(0,0,0,.24);
+      color: white;
+      padding: 6px 8px;
+      display: inline-block;
+      padding-right: 3px;
+
+      &__text{
+        line-height: 58px;
+        text-align: center;
+      }
+    }
+  }
 }
 .task_wrapper{
   width: 100%;
@@ -42,4 +70,7 @@
     float: right;
     margin-right: 8px;
   }
+}
+#task-box-add:hover{
+  background-color: red;
 }
