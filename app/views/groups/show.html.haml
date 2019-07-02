@@ -21,11 +21,19 @@
                     %a.task_icons__delete-button
                     = fa_icon 'trash', class: 'trash_title_icon'
 
-              .task-box-wrapper__contentent__titles
-                .task
-                  aaa
-                .task
-                  bbb
+              .task-box-wrapper__contentent__cards
+                .card-detail
+                  .card-detail__title
+                    aaa
+                .card-detail
+                  %p.card-detail__title
+                    aaaaaaaaaeeeeeeeee
+                    aaaaaaaaaaaaaaa
+                    aaaaaaaaaee
+                %button.task-box-wrapper__contentent__cards__add-button
+                  + カードを追加
+                  = form_for @card, url: "/groups/#{@group_id}/lists/#{@list_id}/cards" do |f|
+                    = f.text_area :title, class: "card-title-field"
       = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
         %td
           .task-box-add-wrapper
@@ -44,8 +52,8 @@
                     .modal-body
                       Modal body
                     .modal-footer
-                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-                      %input.btn.btn-primary{:type => "submit", value: "Send"} OK
+                      %button.btn.btn-secondary{"data-dismiss" => "modal", type:  "button"} Close
+                      %input.btn.btn-primary{type:  "submit", value: "作成"} 
         -# .task-box
         -#   .task-header
         -#     .task_title
@@ -111,3 +119,6 @@
 -# = form_with model: @group do |f|
 -#   .modal-body
 -#     = f.text_field :name, class: "form-control", placeholder: "リストフォーム" 
+.aaew
+  %p.nn
+  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

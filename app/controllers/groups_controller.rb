@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
 
   def show
     @list = List.new
+    @card = Card.new
     @group_id = params[:id]
     @lists = List.where(group_id: @group_id)
   end
