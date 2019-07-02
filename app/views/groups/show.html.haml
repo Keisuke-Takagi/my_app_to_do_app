@@ -23,17 +23,23 @@
 
               .task-box-wrapper__contentent__cards
                 .card-detail
-                  .card-detail__title
+                  .card-detail__content
+                  .card-detail__content__title
                     aaa
                 .card-detail
-                  %p.card-detail__title
-                    aaaaaaaaaeeeeeeeee
-                    aaaaaaaaaaaaaaa
-                    aaaaaaaaaee
+                  .card-detail__content
+                    %p.card-detail__content__title
+                      aaaaaaaaaeeeeeeeee
+                     
                 %button.task-box-wrapper__contentent__cards__add-button
                   + カードを追加
-                  = form_for @card, url: "/groups/#{@group_id}/lists/#{@list_id}/cards" do |f|
-                    = f.text_area :title, class: "card-title-field"
+                = form_for @card, url: "/groups/#{@group_id}/lists/#{@list_id}/cards", class: "new-card-form" do |f|
+                  = f.text_area :title, class: "card-title-field"
+                  .new-card-buttons
+                    = f.submit "カードを追加", class: "new-card-buttons__card-new-button"
+                    .new-card-buttons__remove-button
+                      ×
+                      -# = fa_icon "remove", class: "new-card-buttons__remove-button"
       = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
         %td
           .task-box-add-wrapper
