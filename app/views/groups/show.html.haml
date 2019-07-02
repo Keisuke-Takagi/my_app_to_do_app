@@ -36,7 +36,7 @@
                 = form_for @card, url: "/groups/#{@group_id}/lists/#{@list_id}/cards", class: "new-card-form" do |f|
                   = f.text_area :title,{data: {id: list.id},class: "card-title-field" }
                   .new-card-buttons
-                    = f.submit "カードを追加", class: "new-card-buttons__card-new-button"
+                    = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
                     .new-card-buttons__remove-button{data: {id: list.id} }
                       ×
                       -# = fa_icon "remove", class: "new-card-buttons__remove-button"
