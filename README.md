@@ -29,13 +29,16 @@
 |  column | type  |option   |
 |---|---|---|
 |  text|  string | null: false  |
+|group_id|references | null: false|
 ### Assotiation
 - belongs_to :group
 - has_many : cards
 ##cards テーブル
 |   column |type   |option  |
 |---|---|---|
-| text |  string |null: false   |
+| title |  string |null: false   |
+|discription|text||
+|group_id| references|null: false|
 ###Assotiation
 - belongs_to :list
 - belongs_to :group

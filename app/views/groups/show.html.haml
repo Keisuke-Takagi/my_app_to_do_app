@@ -3,57 +3,82 @@
 .content_main
   = render 'shared/sidebar'
   -# サイドバーで何かする
-  .content_main__task_wrapper{class: "col-lg"}
-    - if @lists.present?
+  .content-main__lists-post
+  - if @lists.present?
+    %table.table
       - @lists.each do |list|
-        .task-box
-          .task-header
-            .task_title
-              メルカリ
-            %ul.task_icons
-              %li.task_header_menu_tag
-                %a.aaa 
-                = fa_icon 'edit', class: 'edit_title_icon' 
-              %li
-                %a.edit_button
-                = fa_icon 'trash', class: 'trash_title_icon'
-          .task
-            aaa
-          .task
-            bbb
-        .task-box
-          .task-header
-            .task_title
-              個人アプリ
-            %ul.task_icons
-              %li.task_header_menu_tag
-                %a.aaa 
-                = fa_icon 'edit', class: 'edit_title_icon' 
-              %li
-                %a.edit_button
-                = fa_icon 'trash', class: 'trash_title_icon'
-          .task
-            aaa
-          .task
-          bbb
-    - else
+        %td
+          .task-box-wrapper
+            .task-box-wrapper__contentent
+              .task-box-wrapper__contentent__task-header
+                .task_title
+                  = list.text
+                %ul.task_icons
+                  %li
+                    %a.task_icons__edit-button
+                    = fa_icon 'edit', class: 'edit_title_icon' 
+                  %li
+                    %a.task_icons__delete-button
+                    = fa_icon 'trash', class: 'trash_title_icon'
+
+              .task-box-wrapper__contentent__titles
+                .task
+                  aaa
+                .task
+                  bbb
       = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
-        %button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "task-box-add"}
-          リストを追加
-        #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
-          .modal-dialog.modal-lg{:role => "document"}
-            .modal-content
-              .modal-header
-                %h5#label1.modal-title 
-                  = f.text_field :text 
-                  = f.hidden_field :group_id, value: @group_id
-                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                  %span{"aria-hidden" => "true"} ×
-              .modal-body
-                Modal body
-              .modal-footer
-                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-                %input.btn.btn-primary{:type => "submit", value: "Send"} OK
+        %td
+          .task-box-add-wrapper
+            .task-box-add-wrapper__content
+              %button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "task-box-add"}
+                リストを追加
+              #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog.modal-lg{:role => "document"}
+                  .modal-content
+                    .modal-header
+                      %h5#label1.modal-title 
+                        = f.text_field :text 
+                        = f.hidden_field :group_id, value: @group_id
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                        %span{"aria-hidden" => "true"} ×
+                    .modal-body
+                      Modal body
+                    .modal-footer
+                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+                      %input.btn.btn-primary{:type => "submit", value: "Send"} OK
+        -# .task-box
+        -#   .task-header
+        -#     .task_title
+        -#       個人アプリ
+        -#     %ul.task_icons
+        -#       %li.task_header_menu_tag
+        -#         %a.aaa 
+        -#         = fa_icon 'edit', class: 'edit_title_icon' 
+        -#       %li
+        -#         %a.edit_button
+        -#         = fa_icon 'trash', class: 'trash_title_icon'
+        -#   .task
+        -#     aaa
+        -#   .task
+        -#   bbb
+  - else
+    = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
+      %button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "task-box-add"}
+        リストを追加
+      #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-lg{:role => "document"}
+          .modal-content
+            .modal-header
+              %h5#label1.modal-title 
+                = f.text_field :text 
+                = f.hidden_field :group_id, value: @group_id
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+            .modal-body
+              Modal body
+            .modal-footer
+              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+              %input.btn.btn-primary{:type => "submit", value: "Send"} OK
 
 
 
