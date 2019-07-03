@@ -1,3 +1,38 @@
+= render 'shared/header'
 - current_user.groups.each do |group|
   = link_to "/groups/#{group.id}" do 
     = group.name
+.group-home-content
+  %section.group-boards--view
+    .group-boards--view__borders-post
+      .group-boards--view__borders-post__current
+        .group-boards--view__borders-post__current__header-expanded
+          %h.group-boards--view__borders-post__current__header-expanded__header
+            = fa_icon "chevron-down"
+            %span.header-title
+              最近のプロジェクト
+        .group-boards--view__borders-post__current__section-contents
+          .current-content-board
+            .current-content-board__title
+              最終課題メルカリ 
+          .current-content-board
+            .current-content-board__title
+              個人アプリ
+      .group-boards--view__boards-post__my-boards
+        .group-boards--view__boards-post__my-boards__header-expanded
+          %h.group-boards--view__boards-post__my-boards__header-expanded__header
+            %span.header-title
+              参加中のプロジェクト
+        .group-boards--view__boards-post__my-boards__section-contents
+          .my-borard-content
+          .my-borard-content--new
+
+    
+
+  
+
+
+
+
+
+
