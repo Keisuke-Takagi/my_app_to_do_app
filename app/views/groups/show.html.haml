@@ -26,6 +26,16 @@
                     .card-detail__content
                       %p.card-detail__content__title
                         = @card.title
+                    .card-button-wrapper{data: {id: list.id}}
+                      %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
+                        + カードを追加
+                      = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
+                        .button_text_field
+                          = f.text_area :title,{data: {id: list.id},class: "card-title-field" }
+                        .new-card-buttons
+                          = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
+                          .new-card-buttons__remove-button{data: {id: list.id} }
+                            ×
                 - else
                   .card-detail
                     .card-detail__content
@@ -38,7 +48,7 @@
                   .card-button-wrapper{data: {id: list.id}}
                     %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
                       + カードを追加
-                    = form_for @card, url: "/groups/#{@group_id}/lists/#{@list_id}/cards", class: "new-card-form" do |f|
+                    = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
                       .button_text_field
                         = f.text_area :title,{data: {id: list.id},class: "card-title-field" }
                       .new-card-buttons
