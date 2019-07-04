@@ -83,47 +83,45 @@ td{
           min-height: 0;
           #card-pop-up{
             overflow: hidden;
-            position: relative;
-            background-color: #fff;
-            border-radius: 3px;
+     
+           
             box-shadow: 0 1px 0 rgba(9,30,66,.25);
+            padding: 6px 8px 2px;
             cursor: pointer;
             display: block;
             margin-bottom: 8px;
-            min-height: 20px;
+            min-height: 40px;
             visibility: hidden;
-            padding: 0; 
-            min-height: 80px;
+            max-width: 300px;
             .card-detail{
               overflow: hidden;
-              position: relative;
               background-color: #fff;
               border-radius: 3px;
               box-shadow: 0 1px 0 rgba(9,30,66,.25);
               cursor: pointer;
-              display: block;
-              margin-bottom: 8px;
-              min-height: 30px;
               visibility: visible;
-              height: 100%;
-              .card-title{
-                text-align: left;
-                padding-top: 0.5rem;
-                padding-left: 0.5rem;
-                word-wrap: break-word;
-                white-space: pre-wrap;
-                width: 100%;
+              padding: 0 10px;
+                .card-title{
+                  text-align: left;
+                  padding-bottom: 0;
+                  margin-bottom: 0;
+                  &__text{
+                    white-space: normal;
+                    margin-bottom: 0;
+                  }
+                }
+              
+              .card-icons{
+                padding: 0;
+                margin: 8px 0;
                 position: relative;
-                top: -20px;
-              }
-            }
-            .card-icons{
-
-              .card-move-r-icon{
-
-              }
-              .card-move-l-icon{
-
+                bottom: 10px;
+                .card-move-r-icon{
+                  float: right;
+                }
+                .card-move-l-icon{
+                  float: left;
+                }
               }
             }
           }
@@ -170,9 +168,7 @@ td{
   margin-right: 8px;
 }
 
-#task-box-add:hover{
-  background-color: red;
-}
+
 #new_list{
   float: left;
 }
@@ -237,21 +233,6 @@ td{
   height: auto;
   display: block;
 }
-    #task-box-add{
-      cursor: pointer;
-      padding: 6px 8px;
-      display: contents;
-      text-decoration: none;
-      padding-right: 3px;
-      width: 272px;
-      visibility: visible;
-      .task-box-add__text{
-        line-height: 58px;
-        text-align: center;
-        opacity: 0.6;
-        background-color: #6b778c;
-      }
-    }
     .task-box-add-wrapper{
       width: 100%;
       height: auto;
@@ -260,6 +241,41 @@ td{
       visibility: hidden;
       &__content{
         opacity: 1;
+        .task-box-add{
+          cursor: pointer;
+          padding: 6px 8px;
+          display: contents;
+          text-decoration: none;
+          padding-right: 3px;
+          width: 272px;
+          visibility: visible;
+          &__text{
+            line-height: 58px;
+            text-align: center;
+            opacity: 0.6;
+            background-color: #6b778c;
+           
+          }
+          &__hidden-post{
+            width: 100%;
+            background-color: #fff;
+            &__form{
+              line-height: 58px;
+              text-align: center;
+              opacity: 0.6;
+              background-color: whitesmoke;
+              width: 100%;
+              color: black;
+              display: none;
+            }
+            &__button{
+              display: block;
+              background-color: #5aac44;
+              color: black;
+              display: none;
+            }
+          }
+        }
       }
     }
 .task-box-add__text:hover{
@@ -273,4 +289,24 @@ td{
 .modal{
   top: auto!important;
   left: auto!important;
+}
+
+.task-box-wrapper-add{
+  width: 100%;
+  height: auto;
+  float: right;
+  background-color: blanchedalmond;
+  background-color: #dfe1e6;
+  border-radius: 3px;
+  &__content{
+    padding: 0 15px 15px 20px;
+    position: relative;
+    &__task-header-add{
+      min-height: 20px;
+      padding: 10px 8px;
+    }
+  }
+}
+#task-box-add:hover{
+  background-color: red;
 }

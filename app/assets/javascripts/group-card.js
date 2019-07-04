@@ -23,5 +23,26 @@ $(document).on('turbolinks:load',function(){
       $(add_button).css('display', 'none')
       $(new_button_add).css("display", "block")
     });
+    $(".task-box-add__text").on("click", function(){
+      var task_box_add = $(this).parent();
+      var task_box_add_form = $(task_box_add).find(".task-box-add__hidden-post")
+      var task_box_add_text_area = $(task_box_add_form).children();
+      var task_box_add_button_submit = $(task_box_add).find(".task-box-add__hidden-post__button")
+      $(this).css("display", "none")
+      $(task_box_add_form).css("display", "block")
+      $(task_box_add_text_area).css("display", "block")
+      $(task_box_add_button_submit).css("display", "block")
+
+    })
+    $(".task-box-add__hidden-post__button").on("click", function(){
+      var task_box_add = $(this).parent();
+      var task_box_add_form = $(task_box_add).find(".task-box-add__hidden-post")
+      var task_box_add_text_area = $(task_box_add_form).children();
+      var task_box_add_button = $(task_box_add).find(".task-box-add__text")
+      $(this).css("display", "none")
+      $(task_box_add_form).css("display", "none")
+      $(task_box_add_text_area).css("display", "none")
+      $(task_box_add_button).css("display", "block")
+    });
   });
 });

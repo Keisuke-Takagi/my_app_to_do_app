@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   def create
+    
     @list = List.new(list_params)
     if @list.save
       redirect_to group_path(params[:group_id])

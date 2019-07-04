@@ -1,114 +1,106 @@
 = render 'shared/group-header'
-            
-.content_main
-  = render 'shared/sidebar'
-  -# サイドバーで何かする
-  .content-main__lists-post
-  - if @lists.present?
-    %table.table
-      -# ここリスト分岐
-      - @lists.each do |list|
-        %td
-          .task-box-wrapper
-            .task-box-wrapper__contentent
-              .task-box-wrapper__contentent__task-header
-                .task_title
-                  = list.text
-                %ul.task_icons
-                  %li
-                    %a.task_icons__edit-button
-                    = fa_icon 'edit', class: 'edit_title_icon' 
-                  %li
-                    %a.task_icons__delete-button
-                    = fa_icon 'trash', class: 'trash_title_icon'
-              .task-box-wrapper__contentent__cards
-                - if @cards.present?
-                  - @cards.each do |card|
-                    - if card.list_id == list.id
-                      .btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "card-pop-up"}
-                        .card-detail
-                          %p.card-title
-                            = card.title
-                          .card-icons  
-                            = fa_icon 'arrow-right', class: "card-move-r-icon"
-                            = fa_icon 'arrow-left', class: "card-move-l-icon"
-                      #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
+- if @lists.present?
+  #Modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "Modal", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-lg{:role => "document"}
+      .modal-content
+        .modal-header
+          %h5#Modal.modal-title モーダルのタイトルが表示されます
+          %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          モーダルのコンテンツを表示します。このモーダルはサイズを大きくしています。
+          またレシポンシブデザインに対応しているので画面を小さくすると、モーダルも自動で縮小されます
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
+          %button.btn.btn-primary{:type => "button"} 保存
+  .content_main
+    = render 'shared/sidebar'
+    -# サイドバーで何かする
+    .content-main__lists-post
+      - if @lists.present?
+        %table.table
+          -# ここリスト分岐
+          - @lists.each do |list|
+            %td
+              .task-box-wrapper
+                .task-box-wrapper__contentent
+                  .task-box-wrapper__contentent__task-header
+                    .task_title
+                      = list.text
+                    %ul.task_icons
+                      %li
+                        %a.task_icons__edit-button
+                        = fa_icon 'edit', class: 'edit_title_icon' 
+                      %li
+                        %a.task_icons__delete-button
+                        = fa_icon 'trash', class: 'trash_title_icon'
+                  .task-box-wrapper__contentent__cards
+                    - if @cards.present?
+                      - @cards.each do |card|
+                        - if card.list_id == list.id
+                          .btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "card-pop-up"}
+                            .card-detail
+                              .card-title
+                                %p.card-title__text
+                                  = card.title
+                              .card-icons  
+                                = fa_icon 'arrow-right', class: "card-move-r-icon"
+                                = fa_icon 'arrow-left', class: "card-move-l-icon"
+                          #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
+                        - else
+                      .card-button-wrapper{data: {id: list.id}}
+                        %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
+                          + カードを追加
+                        = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
+                          = f.hidden_field  :list_id, value: list.id
+                          = f.hidden_field :group_id, value: @group.id
+                          .button_text_field
+                            = f.text_area :title,{data: {id: list.id},maxlength: "20",class: "card-title-field" }
+                          .new-card-buttons
+                            = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
+                            .new-card-buttons__remove-button{data: {id: list.id} }
+                              ×
+      
                     - else
-                  .card-button-wrapper{data: {id: list.id}}
-                    %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
-                      + カードを追加
-                    = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
-                      = f.hidden_field  :list_id, value: list.id
+                      .card-button-wrapper{data: {id: list.id}}
+                        %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
+                          + カードを追加
+                        = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
+                          = f.hidden_field  :list_id, value: list.id
+                          = f.hidden_field :group_id, value: @group.id
+                          .button_text_field
+                            = f.text_area :title,{data: {id: list.id},maxlength: "20",class: "card-title-field" }
+                          .new-card-buttons
+                            = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
+                            .new-card-buttons__remove-button{data: {id: list.id} }
+                              ×
+          = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
+            %td
+              .task-box-add-wrapper
+                .task-box-add-wrapper__content
+                  .task-box-add{id: "task-box-add"}
+                    .task-box-add__text
+                      リストの追加
+                    .task-box-add__hidden-post
+                      = f.text_field :text, class: "task-box-add__hidden-post__form"
                       = f.hidden_field :group_id, value: @group.id
-                      .button_text_field
-                        = f.text_area :title,{data: {id: list.id},maxlength: "20",class: "card-title-field" }
-                      .new-card-buttons
-                        = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
-                        .new-card-buttons__remove-button{data: {id: list.id} }
-                          ×
-
-                - else
-                -# = fa_icon "remove", class: "new-card-buttons__remove-button"
+                    = f.submit "作成する", class: "task-box-add__hidden-post__button"
+- else
+  .content_main
+    = render 'shared/sidebar'
+    -# -# サイドバーで何かする
+    %table.table
       = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
         %td
-          .container.text-center
-          
           .task-box-add-wrapper
             .task-box-add-wrapper__content
-              .btn.btn-primary{"data-target" => "#Modal", "data-toggle" => "modal", :type => "button", id: "task-box-add"}
+              .task-box-add{id: "task-box-add"}
                 .task-box-add__text
-                  押すと表示されます。
-              #Modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "Modal", :role => "dialog", :tabindex => "-1"}
-                .modal-dialog.modal-lg{:role => "document"}
-                  .modal-content
-                    .modal-header
-                      %h5#Modal.modal-title モーダルのタイトルが表示されます
-                      %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
-                        %span{"aria-hidden" => "true"} ×
-                    .modal-body
-                      モーダルのコンテンツを表示します。このモーダルはサイズを大きくしています。
-                      またレシポンシブデザインに対応しているので画面を小さくすると、モーダルも自動で縮小されます
-                    .modal-footer
-                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
-                      %button.btn.btn-primary{:type => "button"} 保存
-
-        -# .task-box
-        -#   .task-header
-        -#     .task_title
-        -#       個人アプリ
-        -#     %ul.task_icons
-        -#       %li.task_header_menu_tag
-        -#         %a.aaa 
-        -#         = fa_icon 'edit', class: 'edit_title_icon' 
-        -#       %li
-        -#         %a.edit_button
-        -#         = fa_icon 'trash', class: 'trash_title_icon'
-        -#   .task
-        -#     aaa
-        -#   .task
-        -#   bbb
-  - else
-    = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
-      %button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button", class: "btn-success", id: "task-box-add"}
-        リストを追加
-      #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog.modal-lg{:role => "document"}
-          .modal-content
-            .modal-header
-              %h5#label1.modal-title 
-                = f.text_field :text 
-                = f.hidden_field :group_id, value: @group_id
-              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                %span{"aria-hidden" => "true"} ×
-            .modal-body
-              Modal body
-            .modal-footer
-              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-              %input.btn.btn-primary{:type => "submit", value: "Send"} OK
-
-
-
-
+                  リストの追加
+                .task-box-add__hidden-post
+                  = f.text_field :text, class: "task-box-add__hidden-post__form"
+                  = f.hidden_field :group_id, value: @group.id
+                = f.submit "作成する", class: "task-box-add__hidden-post__button"
 .container.text-center
   %button.btn.btn-primary.mt-5{"data-target" => "#post", "data-toggle" => "modal", :type => "button"} つぶやきを投稿する
   #post.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
