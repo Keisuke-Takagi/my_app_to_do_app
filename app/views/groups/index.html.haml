@@ -1,6 +1,6 @@
 = render 'shared/header'
 - current_user.groups.each do |group|
-  = link_to "/groups/#{group.id}" do 
+  = link_to "/groups/#{group.id}", data: {"turbolinks" => false } do 
     = group.name
 .group-home-content
   %section.group-boards--view

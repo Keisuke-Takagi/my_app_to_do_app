@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load',function(){
   $(function(){
-
     $(".task-box-wrapper__contentent__cards__add-button").on('click', function(){
       var add_button_wrapper = $(this).parent();
       var add_text_area = $(add_button_wrapper).find(".card-title-field");
@@ -32,7 +31,6 @@ $(document).on('turbolinks:load',function(){
       $(task_box_add_form).css("display", "block")
       $(task_box_add_text_area).css("display", "block")
       $(task_box_add_button_submit).css("display", "block")
-
     })
     $(".task-box-add__hidden-post__button").on("click", function(){
       var task_box_add = $(this).parent();
