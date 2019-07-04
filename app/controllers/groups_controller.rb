@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
     @card = Card.new
     @group_id = params[:id]
     @lists = List.where(group_id: @group_id)
+    @cards = Card.where(group_id: @group_id)
   end
 
   def edit
