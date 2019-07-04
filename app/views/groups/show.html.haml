@@ -1,18 +1,23 @@
 = render 'shared/group-header'
 - if @lists.present?
-  
-  #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        .modal-header
-          %h5#exampleModalLabel.modal-title モーダルのタイトル
-          %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
-          %p モーダルのコンテンツ文。
-        .modal-footer
-          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
-          %button.btn.btn-primary{:type => "button"} 変更を保存
+  - @lists.each do |list|
+    - @cards.each do |card|
+      = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH) do
+        #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog{:role => "document"}
+            .modal-content
+              .modal-header
+                = text_field_tag :title
+                = text_field_tag :discription
+                = submit_tag "追加"
+                %h5#exampleModalLabel.modal-title モーダルのタイトル
+                %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                %p モーダルのコンテンツ文。
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
+                %button.btn.btn-primary{:type => "button"} 変更を保存
   .content_main
     = render 'shared/sidebar'
     -# サイドバーで何かする
