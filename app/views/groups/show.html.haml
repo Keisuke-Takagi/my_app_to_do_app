@@ -1,23 +1,24 @@
 = render 'shared/group-header'
+.modal-overlay
 - if @lists.present?
   - @lists.each do |list|
     - @cards.each do |card|
-      = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH) do
-        #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-          .modal-dialog{:role => "document"}
-            .modal-content
-              .modal-header
-                = text_field_tag :title
-                = text_field_tag :discription
-                = submit_tag "追加"
-                %h5#exampleModalLabel.modal-title モーダルのタイトル
-                %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
-                  %span{"aria-hidden" => "true"} ×
-              .modal-body
-                %p モーダルのコンテンツ文。
-              .modal-footer
-                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
-                %button.btn.btn-primary{:type => "button"} 変更を保存
+      -# = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH) do
+      -#   #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      -#     .modal-dialog{:role => "document"}
+      -#       .modal-content{data: {id: card.id}}
+      -#         .modal-header
+      -#           = text_field_tag :title ,card.title,id: "edit-card-title-field"
+      -#           = text_field_tag :discription , card.discription, id: "edit-card-discription-field"
+      -#           = submit_tag "追加", id: "edit-card-button"
+      -#           %h5#exampleModalLabel.modal-title モーダルのタイトル
+      -#           %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
+      -#             %span{"aria-hidden" => "true"} ×
+      -#         .modal-body
+      -#           %p モーダルのコンテンツ文。
+      -#         .modal-footer
+      -#           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
+      -#           %button.btn.btn-primary{:type => "button"} 変更を保存
   .content_main
     = render 'shared/sidebar'
     -# サイドバーで何かする
@@ -42,18 +43,43 @@
                   - if @cards.present?
                     - @cards.each do |card|
                       - if card.list_id == list.id
-                        .btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button", id: "card-pop-up"}
-                          .card-detail
-                            .card-title
-                              %p.card-title__text
-                                = card.title
-                            .card-icons  
-                              = fa_icon 'arrow-right', class: "card-move-r-icon"
-                              = fa_icon 'arrow-left', class: "card-move-l-icon"
-                        
+                        .card-content
+                          .btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button", id: "card-pop-up", data: {id: card.id}}
+                            .card-detail{data: {id: card.list_id}}
+                              .card-title
+                                %p.card-title__text
+                                  = card.title
+                              .card-icons 
+                                = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH,class: "move-card-form", id: "move-card-form#{card.id}") do
+                                  = hidden_field_tag :id,  card.id, class: "card-id__hidden"
+                                  = hidden_field_tag :title,  card.title, class: "card-title__hidden"
+                                  = hidden_field_tag :discription,  card.discription, class: "card-discription__hidden"
+                                  = hidden_field_tag :list_id, "" , class: "card-list_id__hidden"
+                                  = button_tag({:data => {id: card.list_id},type: "submit",name: "card", class: "card-icons__next" } ) do
+                                    = fa_icon 'arrow-right', class: "card-move-r-icon"
+                                  = button_tag type: "submit", class: "card-icons__previous" do
+                                    = fa_icon 'arrow-left', class: "card-move-l-icon"
+                          .card-content__edit-wrapper
+                            .card-content__edit-wrapper__mordal
+                              = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}",name: "edit-card",id: "edit-card-form", class: "edit-card-form",method: :PATCH) do
+                                .window-header
+                                  .window-header__title
+                                    = text_field_tag :title ,card.title,id: "edit-card-title-field"
+                                .window-content
+                                  .window-content__discripition-title
+                                    .window-content__discripition-title__icon
+                                      = fa_icon 'indent', id: "icon-title",class: "icon-title"
+                                    %h3.window-content__discripition-title__text
+                                      説明
+                                  .window-content__discription-content
+                                    = text_area_tag :discription , card.discription,wrap: "hard", id: "edit-card-discription-field", placeholder: "詳しい説明"
+                                = submit_tag "カードの内容を編集", id: "edit-card-button", class: "edit-card-button"
+                                %span.card-content__add-box__button--cancel
+                                  ×
+                                
                       - else
-                    .card-button-wrapper{data: {id: list.id}}
-                      %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
+                    .card-content-add{data: {id: list.id}}
+                      %button.card-content-add__button{data: {id: list.id}}
                         + カードを追加
                       = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
                         = f.hidden_field  :list_id, value: list.id
@@ -64,10 +90,9 @@
                           = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
                           .new-card-buttons__remove-button{data: {id: list.id} }
                             ×
-    
                   - else
-                    .card-button-wrapper{data: {id: list.id}}
-                      %button.task-box-wrapper__contentent__cards__add-button{data: {id: list.id}}
+                    .card-content-add{data: {id: list.id}}
+                      %button.card-content-add__button{data: {id: list.id}}
                         + カードを追加
                       = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
                         = f.hidden_field  :list_id, value: list.id
@@ -78,7 +103,6 @@
                           = f.submit "カードを追加",{data: {id: list.id}, class: "new-card-buttons__card-new-button"}
                           .new-card-buttons__remove-button{data: {id: list.id} }
                             ×
-
         = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
           %td
             .task-box-add-wrapper
@@ -111,31 +135,7 @@
 
 
 
-.container.text-center
-  %button.btn.btn-primary.mt-5{"data-target" => "#post", "data-toggle" => "modal", :type => "button"} つぶやきを投稿する
-  #post.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        = form_with model: @group do |f|
-          .modal-body
-            = f.text_field :body, class: "form-control", placeholder: "投稿内容を入力"
-          .modal-footer
-            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} 閉じる
-            = f.submit "投稿する", class: "btn btn-primary"
-%button.btn.btn-primary{"data-target" => "#modal1", "data-toggle" => "modal", :type => "button"}
-  Launch demo modal
-#modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "label1", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %h5#label1.modal-title Modal title
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        Modal body
-      .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary{:type => "button"} OK
+
 -# = form_with model: @group do |f|
 -#   .modal-body
 -#     = f.text_field :name, class: "form-control", placeholder: "リストフォーム" 

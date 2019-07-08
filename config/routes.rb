@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update]
   resources :groups, only: [:index, :new,:show ,:create, :edit, :update] do
     resources :lists, only: [:index, :new, :create, :delete] do
-      resources :cards, only: [:new, :create, :edit, :update]
+      resources :cards, only: [:index,:new, :create, :edit, :update]
+      member do
+      end
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
