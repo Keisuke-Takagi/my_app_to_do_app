@@ -1,7 +1,6 @@
 $(document).on('turbolinks:load',function(){
   $(function(){
     $(".card-icons__next").on("click", function(){
-      // var this_page_move_forms = $(".move-card-form")
       var this_page_move_forms = $(".task-box-wrapper__contentent__cards")
       var parent_1 = $(this).parent();
       var parent_2 = $(parent_1).parent();
@@ -34,7 +33,6 @@ $(document).on('turbolinks:load',function(){
       var card_id__hidden = $(parent_2).find(".card-id__hidden").val();
       var move_card__form = $(parent_2).find(".move-card-form");
       var this_form_data_id = $(move_card__form).data("id");
-      debugger
       $.each(this_page_move_forms, function(index, a_form){
         var each_list_id = $(a_form).data("id");
         if(each_list_id <  this_form_data_id){
