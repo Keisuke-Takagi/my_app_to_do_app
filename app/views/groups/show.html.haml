@@ -50,7 +50,7 @@
                                 %p.card-title__text
                                   = card.title
                               .card-icons
-                                = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH,class: "move-card-form",name: "card_move_form" , id: "move-card-form#{card.id}") do
+                                = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH,class: "move-card-form",data: {id: card.list_id},name: "card_move_form" , id: "move-card-form#{card.id}") do
                                   = hidden_field_tag :id,  card.id, class: "card-id__hidden"
                                   = hidden_field_tag :title,  card.title, class: "card-title__hidden"
                                   = hidden_field_tag :discription,  card.discription, class: "card-discription__hidden"

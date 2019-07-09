@@ -8,7 +8,6 @@ class CardsController < ApplicationController
   end
   def update
     @a_card = Card.find(params[:id])
-    binding.pry
     if @a_card.update(update_params)
       redirect_to group_path(params[:group_id])
     else
