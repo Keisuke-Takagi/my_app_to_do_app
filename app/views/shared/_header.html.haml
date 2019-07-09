@@ -1,0 +1,29 @@
+%header.header
+  %nav.nav
+    %ul.header_menu
+      .header_menu__user-group-name-box
+        - if user_signed_in?
+          = current_user.name
+          %li ここにグループ名
+        - else
+      %li.header_menu_title
+        %a.nav-top-link{:href => "/"} todoapp
+      %li
+        %ul.header_menu_inner
+          
+          - if user_signed_in?
+            %li.header_menu_tag
+              
+            %li.header_menu_tag
+              = link_to "ログアウト", "http://localhost:3000/users/sign_out", method: :delete
+            %li.header_menu_tag
+              = link_to groups_path do
+                グループ一覧
+                = fa_icon 'edit', class: 'icon-header' 
+            %li.header_menu_tag
+              = link_to new_group_path do
+                グループ作成
+          - else
+            %li.header_menu_tag
+              = link_to new_user_session_path do
+                ログイン
