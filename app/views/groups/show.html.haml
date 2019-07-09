@@ -39,7 +39,7 @@
                     %li
                       %a.task_icons__delete-button
                       = fa_icon 'trash', class: 'trash_title_icon'
-                .task-box-wrapper__contentent__cards
+                .task-box-wrapper__contentent__cards{data: {id: list.id} }
                   - if @cards.present?
                     - @cards.each do |card|
                       - if card.list_id == list.id
@@ -76,7 +76,6 @@
                                 = submit_tag "カードの内容を編集", id: "edit-card-button", class: "edit-card-button"
                                 %span.card-content__add-box__button--cancel
                                   ×
-                                
                       - else
                     .card-content-add{data: {id: list.id}}
                       %button.card-content-add__button{data: {id: list.id}}
@@ -117,7 +116,6 @@
 - else
   .content_main
     = render 'shared/sidebar'
-    -# -# サイドバーで何かする
     %table.table
       = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
         %td
@@ -130,7 +128,6 @@
                   = f.text_field :text, class: "task-box-add__hidden-post__form"
                   = f.hidden_field :group_id, value: @group.id
                 = f.submit "作成する", class: "task-box-add__hidden-post__button"
-
 -# = form_with model: @group do |f|
 -#   .modal-body
 -#     = f.text_field :name, class: "form-control", placeholder: "リストフォーム" 
