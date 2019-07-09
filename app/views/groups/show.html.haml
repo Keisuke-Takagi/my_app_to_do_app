@@ -55,9 +55,9 @@
                                   = hidden_field_tag :title,  card.title, class: "card-title__hidden"
                                   = hidden_field_tag :discription,  card.discription, class: "card-discription__hidden"
                                   = hidden_field_tag :list_id, "" , class: "card-list_id__hidden"
-                                  = button_tag({:data => {id: card.list_id},type: "submit",name: "card", class: "card-icons__next" } ) do
+                                  = button_tag({data:  {id: card.list_id},type: "submit",name: "card", class: "card-icons__next" } ) do
                                     = fa_icon 'arrow-right', class: "card-move-r-icon"
-                                  .card-icons__previous
+                                  = button_tag({ data: {id: card.list_id},  type: "submit", class: "card-icons__previous"}) do
                                     = fa_icon 'arrow-left', class: "card-move-l-icon"
                           .card-content__edit-wrapper
                             .card-content__edit-wrapper__mordal
