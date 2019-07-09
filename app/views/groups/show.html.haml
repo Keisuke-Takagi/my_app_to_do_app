@@ -1,7 +1,7 @@
 = render 'shared/group-header'
 .modal-overlay
 - if @lists.present?
-  - @lists.each do |list|
+  - @lists.each_with_index do |list, i|
     - @cards.each do |card|
       -# = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH) do
       -#   #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -49,15 +49,15 @@
                               .card-title
                                 %p.card-title__text
                                   = card.title
-                              .card-icons 
-                                = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH,class: "move-card-form", id: "move-card-form#{card.id}") do
+                              .card-icons
+                                = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}", method: :PATCH,class: "move-card-form",name: "card_move_form" , id: "move-card-form#{card.id}") do
                                   = hidden_field_tag :id,  card.id, class: "card-id__hidden"
                                   = hidden_field_tag :title,  card.title, class: "card-title__hidden"
                                   = hidden_field_tag :discription,  card.discription, class: "card-discription__hidden"
                                   = hidden_field_tag :list_id, "" , class: "card-list_id__hidden"
                                   = button_tag({:data => {id: card.list_id},type: "submit",name: "card", class: "card-icons__next" } ) do
                                     = fa_icon 'arrow-right', class: "card-move-r-icon"
-                                  = button_tag type: "submit", class: "card-icons__previous" do
+                                  .card-icons__previous
                                     = fa_icon 'arrow-left', class: "card-move-l-icon"
                           .card-content__edit-wrapper
                             .card-content__edit-wrapper__mordal
@@ -81,7 +81,7 @@
                     .card-content-add{data: {id: list.id}}
                       %button.card-content-add__button{data: {id: list.id}}
                         + カードを追加
-                      = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards", class: "new-card-form" do |f|
+                      = form_for @card, url: "/groups/#{@group_id}/lists/#{list.id}/cards",class: "new-card-form" do |f|
                         = f.hidden_field  :list_id, value: list.id
                         = f.hidden_field :group_id, value: @group.id
                         .button_text_field
@@ -130,11 +130,6 @@
                   = f.text_field :text, class: "task-box-add__hidden-post__form"
                   = f.hidden_field :group_id, value: @group.id
                 = f.submit "作成する", class: "task-box-add__hidden-post__button"
-
-
-
-
-
 
 -# = form_with model: @group do |f|
 -#   .modal-body
