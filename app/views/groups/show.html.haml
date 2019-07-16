@@ -1,14 +1,9 @@
 = render 'shared/group-header'
 .modal-overlay
 - if @lists.present?
-  - @lists.each_with_index do |list, i|
-    - @cards.each do |card|
   .content_main
-    = render 'shared/sidebar'
-    -# サイドバーで何かする
     .content-main__lists-post
       %table.table
-        -# ここリスト分岐
         - @lists.each do |list|
           %td
             .task-box-wrapper
