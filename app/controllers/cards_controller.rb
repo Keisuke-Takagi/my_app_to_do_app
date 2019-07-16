@@ -27,7 +27,9 @@ class CardsController < ApplicationController
   def create_params
     params.require(:card).permit(:title, :list_id, :group_id)
   end
+
   def update_params
     params.permit(:title, :discription, :list_id, :group_id)
   end
+  
 end
