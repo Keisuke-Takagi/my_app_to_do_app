@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update, :show]
   before_action :redirect_sign_in 
+  
   def index
     @groups = current_user.groups
     if @groups.present?
@@ -37,21 +38,20 @@ class GroupsController < ApplicationController
   def update
   end
 
-
   private
    def group_params
       params.require(:group).permit(:name, { :user_ids => [] })
    end
+
    def set_group
       @group = Group.find(params[:id])
    end
-   def set_list
-    @lists = List.find(group_id: params[:id])
-   end
+
    def redirect_sign_in
     if user_signed_in?
     else
       redirect_to new_user_registration_path
     end
    end
+
 end

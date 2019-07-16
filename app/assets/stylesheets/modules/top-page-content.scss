@@ -61,23 +61,46 @@ td{
             font-weight: 500;
             display: inline-block;
           }
-          .task_icons{
-            border-radius: 3px;
-            color: #6b778c;
-            padding: 6px 0;
-            display: inline-block;
-            float: right;
-            width: 60px;
-            margin: 5px;
+          .task_title-form{
+            display: none;
+            &__field{
+              display: none;
+              font-weight: 500;
+              display: inline-block;
+              box-shadow: inset 0 0 0 2px #0079bf;
+              width: 78%;
+            }
+            .submit_button{
+              border: none;
+            }
+          }
+
+            // border-radius: 3px;
+            // color: #6b778c;
+            // display: inline-block;
+            // float: right;
+            // width: 38px;
+            // margin-top: 10px;
+            // margin-right: 6px;
             &__delete-button{
-              width: 20px;
-              height: 20px;
+              float: right;
+              padding-top: 0.09rem;
+              background-color: #dfe1e6;
+              border: none;
+              margin-top: 11px;
             }
             &__edit-button{
               width: 20px;
               height: 20px;
+              border-radius: 3px;
+              color: #6b778c;
+              display: inline-block;
+              float: right;
+              width: 38px;
+              margin-top: 10px;
+              margin-right: 6px;
             }
-          }
+          
         }
         &__cards{
           margin: 0 4px;
@@ -95,6 +118,7 @@ td{
               min-height: 40px;
               visibility: hidden;
               max-width: 300px;
+              width: 100%;
               .card-detail{
                 overflow: hidden;
                 background-color: #fff;
@@ -204,13 +228,30 @@ td{
                   &__discription-content{
                     min-height: 40px;
                     width: 100%;
-                    #edit-card-discription-field{
-                      background-color: rgba(9,30,66,.04);
+                    &__show{
+                      background-color: gainsboro;
                       box-shadow: none;
                       border: none;
                       border-radius: 3px;
                       display: block;
-                      min-height: 40px;
+                      min-height: 170px;
+                      padding: 8px 12px;
+                      text-decoration: none;
+                      height: 100%;
+                      width: 100%;
+                      word-wrap: break-word;
+                      font-size: 19px;
+                      
+                      &__text-none{
+                        color: #6b778c;
+                      }
+                    }
+                    #edit-card-discription-field{
+                      box-shadow: none;
+                      border: none;
+                      border-radius: 3px;
+                      display: none;
+                      min-height: 170px;
                       padding: 8px 12px;
                       text-decoration: none;
                       height: 100%;
@@ -284,10 +325,22 @@ td{
 .edit_title_icon {
   float: right;
   padding-top: 0.09rem;
+  background-color: #dfe1e6;
+  border: none;
+  margin-top: 11px;
+}
+#edit_title_icon{
+  padding: 0;
+  margin: 0;
 }
 .trash_title_icon{
   float: right;
-  margin-right: 8px;
+  margin-left: 8px;
+  float: right;
+  padding-top: 0.09rem;
+  background-color: #dfe1e6;
+  border: none;
+  margin-top: 11px;
 }
 
 
