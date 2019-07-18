@@ -72,7 +72,17 @@ $(document).on('turbolinks:load',function(){
       $(".modal-overlay").removeAttr("style");
       $(".card-content__edit-wrapper").removeAttr("style")
     });
-  })
+    $("#new_card").on("submit", function(){
+      debugger
+      var new_card_title = $(this).find(".card-title-field").val()
+      if(new_card_title == ""){
+        swal ("カードのタイトルを入力して下さい", "" ,"error")
+        $(".swal-button-container").on("click", function(){
+          location.reload()
+        });
+      }else{}
+    });
+  });
 
 });
 
