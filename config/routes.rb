@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'users#index'
   resources :users, only: [:index, :edit, :update]
   resources :groups, only: [:index, :new,:show ,:create, :edit, :update] do
-    resources :lists, only: [:index, :new, :create, :delete, :update] do
+    resources :lists, only: [:index, :new, :create, :destroy, :update] do
       resources :cards
       member do
       end

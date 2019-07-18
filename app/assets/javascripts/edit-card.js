@@ -51,8 +51,5 @@ $(document).on('turbolinks:load',function(){
     })
     $(".move-card-form").on("submit", function(){
     });
-    $(".edit-card-form").on("submit", function(){
-
-    });
   });
 });

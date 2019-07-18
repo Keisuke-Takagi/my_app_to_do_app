@@ -31,5 +31,5 @@ class CardsController < ApplicationController
   def update_params
     params.permit(:title, :discription, :list_id, :group_id)
   end
-  
+
 end

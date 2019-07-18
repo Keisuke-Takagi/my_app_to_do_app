@@ -14,9 +14,17 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+    @a_list = List.find(params[:id])
+    if  @a_list.destroy
+    redirect_to group_path(params[:group_id])
+    else
+    end
+  end
+
   private
   def list_params
     params.require(:list).permit(:text, :group_id)
   end
-  
+
 end
