@@ -74,7 +74,6 @@ td{
               border: none;
             }
           }
-
             // border-radius: 3px;
             // color: #6b778c;
             // display: inline-block;
@@ -82,13 +81,21 @@ td{
             // width: 38px;
             // margin-top: 10px;
             // margin-right: 6px;
+          .task_delte-form{
+            display: contents;
             &__delete-button{
-              float: right;
-              padding-top: 0.09rem;
-              background-color: #dfe1e6;
-              border: none;
-              margin-top: 11px;
+              &__submit{
+                &__icon{
+                  float: right;
+                  padding-top: 0.09rem;
+                  background-color: #dfe1e6;
+                  border: none;
+                  margin-top: 11px;
+                  margin-left: 0.5rem;
+                }
+              }
             }
+          }
             &__edit-button{
               width: 20px;
               height: 20px;

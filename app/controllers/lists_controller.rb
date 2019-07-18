@@ -14,9 +14,14 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+    binding.pry
+    redirect_to group_path(params[:group_id])
+  end
+
   private
   def list_params
     params.require(:list).permit(:text, :group_id)
   end
-  
+
 end

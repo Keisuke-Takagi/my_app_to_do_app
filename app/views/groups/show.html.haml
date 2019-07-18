@@ -15,8 +15,9 @@
                     = f.text_field :text, class: "task_title-form__field"
                     = button_tag  type: "submit", class: "submit_button" do
                       = fa_icon 'edit', class: 'edit_title_icon' ,id: "edit_title_icon"
-                  %a.task_icons__delete-button
-                    = fa_icon 'trash', class: 'trash_title_icon', id: "trash_title_icon"
+                  = form_for [@group, list], url: "/groups/#{@group_id}/lists/#{list.id}", method: "DELETE", html:{ class: "task_delte-form"} do |f|
+                    = link_to "/groups/#{@group_id}/lists/#{list.id}",method: "DELETE",  class: "task_delte-form__delete-button__submit" do
+                      = fa_icon 'trash', class: 'task_delte-form__delete-button__submit__icon', id: "trash_title_icon"
                   %a.task_icons__edit-button
                     = fa_icon 'edit', class: 'edit_title_icon' 
                 .task-box-wrapper__contentent__cards{data: {id: list.id} }
