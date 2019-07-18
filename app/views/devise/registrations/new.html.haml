@@ -1,9 +1,10 @@
 .wrapper
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = render "devise/shared/error_messages", resource: resource
+
     %h3.form-signin-heading Welcome to todo_app!
     %hr.colorgraph/
     %br/
+    = render "devise/shared/error_messages", resource: resource
     = f.text_field :name,autofocus: true, maxlength: "8" , class: "form-control", placeholder: "nickname(最大8文字)"
     = f.email_field :email, autocomplete: "email",placeholder: "email",class: "form-control"
     = f.password_field  :password,autocomplete: "new-password"  ,:placeholder => "Password", class: "form-control" 
