@@ -15,8 +15,11 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    @a_list = List.find(params[:id])
+    if  @a_list.destroy
     redirect_to group_path(params[:group_id])
+    else
+    end
   end
 
   private
