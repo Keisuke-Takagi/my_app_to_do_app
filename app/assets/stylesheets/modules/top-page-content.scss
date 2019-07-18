@@ -27,6 +27,7 @@ td{
   padding: 0!important;;
   width: 272px;
   margin: 0 4px;
+  border-top: none!important;
 }
 .modal-overlay{
   background-color: rgba(0,0,0,.64);
@@ -37,12 +38,14 @@ td{
   z-index: 99;
   display: none;
 }
-.content_main{
+.content-main{
   width: auto;
   height: 100%;
   overflow: auto;
   white-space: nowrap;
   background: url("background-image.jpg");
+  &__lists-post{
+    margin-top: 20px;
     .task-box-wrapper{
       width: 100%;
       height: auto;
@@ -324,7 +327,7 @@ td{
         color: #fff;
       }
   }
-
+}
 
 .task-header{
   width: 100%;
