@@ -13,7 +13,7 @@
                 .new-group-form__box__field-group__field
                   .new-group-form__box__field-group__field__group-name
                     = f.label "新規グループ名(10文字以内)", class: "new-group-form__box__field-group__field__group-name__tag"
-                    = f.text_field :name, maxlength: "10" , class: "new-group-text-field", placeholder: "グループを作成"
+                    = f.text_field :name, maxlength: "10" , class: "new-group-text-field", placeholder: "グループ名（必須）"
                   .new-group-form__box__field-group__field__member-list
                     %p.new-group-form__box__field-group__field__member-list__text
                       招待するメンバー
