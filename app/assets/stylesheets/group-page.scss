@@ -10,18 +10,24 @@
   border-bottom: 1px solid;
   padding: 0;
   margin: 0;
+  &__errors{
+    &__message{
+      color: red;
+    }
+  }
   &__container{
     width: 100%;
     text-align: center;
+    height: 460px;
     &__content{
-      padding: 20px 0;
+      padding: 30px 0;
       font-size: 14px;
+      height: 100%;
       &__box{
-        margin-top: 24px;
-        margin-bottom: 24px;
+          padding: 24px 0;
         .new-group-form{
           box-sizing: border-box;
-          max-width: 550px;
+          max-width: 700px;
           width: 100%;
           padding: 0 10px;
           margin: 0 auto;
@@ -36,6 +42,11 @@
                   display: flex;
                   justify-content: space-between;
                   margin: 0 0 15px 0;
+                  .field_with_errors{
+                    .new-group-text-field{
+                      width: 335px
+                    }
+                  }
                   &__tag{
                     line-height: 2rem;
                     padding-right: 20px;
@@ -43,7 +54,7 @@
                   .new-group-text-field{
                     height: 2rem;
                     padding: 10px;
-                    width: 55%;
+                    width: 335px;
                     padding: 10px;
                     border-radius: 0;
                     box-shadow: none;
@@ -60,7 +71,7 @@
                   &__text-field{
                     height: 2rem;
                     padding: 10px;
-                    width: 55%;
+                    width: 335px;
                     padding: 10px;
                     border-radius: 0;
                     box-shadow: none;
@@ -70,6 +81,16 @@
                   display: flex;
                   justify-content: space-between;
                   margin: 10px 0 15px 0;
+                  &__text{
+                    line-height: 2rem;
+                    width: 190px;
+                    padding-top: 20px;
+                    text-align: left;
+                    &__user-collection-box{
+                      font-size: 20px;
+                      padding-left: 50px;
+                    }
+                  }
                 }
               } 
             }
@@ -77,22 +98,24 @@
         } 
       } 
       &__button-box{
-        .group-new-button{
-          background-color: #5aac44;
-          box-shadow: none;
-          border: none;
-          color: #fff;
-          cursor: pointer;
-          font-weight: 400;
-          line-height: 20px;
-          margin: 8px 4px 0 0;
-          padding: 6px 12px;
-          text-align: center;
-          display: block;
-          margin: 0 0 10px;
+        #create-button{
+          width: 680px;;
+          position: relative;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
           margin: 0 auto;
         }
       }
     }
   }
+}
+.field_with_errors{
+  height: 0;
+  display: inline;
+}
+#group_user_ids_7::before{
+  content: "\A" ;
+  white-space: pre;
 }
