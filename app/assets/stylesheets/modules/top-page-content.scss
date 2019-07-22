@@ -63,6 +63,8 @@ td{
             font-size: 25px;
             font-weight: 500;
             display: inline-block;
+            white-space: normal;
+            width: 184px;
           }
           .task_title-form{
             display: none;
@@ -251,7 +253,7 @@ td{
                       width: 100%;
                       word-wrap: break-word;
                       font-size: 19px;
-                      
+                      white-space: normal;
                       &__text-none{
                         color: #6b778c;
                       }
@@ -422,10 +424,10 @@ td{
       width: 100%;
       height: auto;
       float: right;
-      padding: 15px 15px 15px 20px;
       visibility: hidden;
       &__content{
         opacity: 1;
+        margin-top: 20px;
         .task-box-add{
           cursor: pointer;
           padding: 6px 8px;
@@ -445,13 +447,13 @@ td{
             width: 100%;
             background-color: #fff;
             &__form{
-              line-height: 58px;
-              text-align: center;
+              text-align: left;
               opacity: 0.6;
               background-color: whitesmoke;
               width: 100%;
               color: black;
               display: none;
+              white-space: normal;
             }
             &__button{
               display: block;

@@ -1,26 +1,24 @@
 = render 'shared/header'
 .group-wrapper
-  = form_for @group do |f|
+  = form_for @group, id: "group-form-create"  do |f|
+    - if @group.errors.any?
+      .group-wrapper__errors
+        %h2.group-wrapper__errors__message= "#{@group.errors.full_messages.count}件のエラーが発生しました。"
     .group-wrapper__container
       .group-wrapper__container__content
         .group-wrapper__container__content__box
           %section.new-group-form
             .new-group-form__box
-              - if @group.errors.any?
-                .new-group-form__box__errors
-                  %h2
-                    情報が正しくありません
               .new-group-form__box__field-group
                 .new-group-form__box__field-group__field
                   .new-group-form__box__field-group__field__group-name
                     = f.label "新規グループ名(10文字以内)", class: "new-group-form__box__field-group__field__group-name__tag"
-                    = f.text_field :name, maxlength: "10" , class: "new-group-text-field", placeholder: "グループを作成"
-                  .new-group-form__box__field-group__field__member-search
-                    = f.label "グループメンバーを追加", class: "new-group-form__box__field-group__field__member-search__tag"
-                    %input.new-group-form__box__field-group__field__member-search__text-field{placeholder: "追加するユーザー名", type:  "text"}
+                    = f.text_field :name, maxlength: "10" , class: "new-group-text-field", placeholder: "グループ名（必須）"
                   .new-group-form__box__field-group__field__member-list
-                    = f.label "招待するメンバー"
-                    = f.collection_check_boxes :user_ids, User.all, :id, :name               
+                    %p.new-group-form__box__field-group__field__member-list__text
+                      招待するメンバー
+                      .new-group-form__box__field-group__field__member-list__text__user-collection-box
+                        = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false
                     - @group.users.each do |mem|
                       -# #new-group-users
                       -#   - if mem == current_user
@@ -32,5 +30,5 @@
                       -#     %p.new-group-current-user__name
                       -#       = mem.name
         .group-wrapper__container__content__button-box
-          = f.submit "作成", class: "group-new-button"
+          = f.submit "作成", class: "btn btn-success btn-primary btn-lg btn-block", id: "create-button"
 

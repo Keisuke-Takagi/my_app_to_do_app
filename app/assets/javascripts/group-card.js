@@ -72,13 +72,16 @@ $(document).on('turbolinks:load',function(){
       $(".modal-overlay").removeAttr("style");
       $(".card-content__edit-wrapper").removeAttr("style")
     });
-    $("#new_card").on("submit", function(){
-      debugger
-      var new_card_title = $(this).find(".card-title-field").val()
-      if(new_card_title == ""){
+    $(".new-card-buttons__card-new-button").on("click", function(){
+      var new_card_title_box = $(this).closest(".new_card")
+      var new_card_title_text_area = $(new_card_title_box).find(".card-title-field").val()
+      if(new_card_title_text_area == ""){
         swal ("カードのタイトルを入力して下さい", "" ,"error")
         $(".swal-button-container").on("click", function(){
-          location.reload()
+        $('.new_card').prop('disabled',false)
+        $(document).on("click",".swal-button--confirm" ,function(){
+          $(".new-card-buttons__card-new-button").removeAttr("disabled");
+        });
         });
       }else{}
     });

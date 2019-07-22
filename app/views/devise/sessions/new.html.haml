@@ -1,17 +1,12 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
+-# %h2 Log in
+.wrapper
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    %h3.form-signin-heading Welcomeback to todo_app!
+    %hr.colorgraph/
     %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
+    = render "devise/shared/error_messages", resource: resource
+    = f.email_field :email, autocomplete: "email",placeholder: "email",class: "form-control"
+    = f.password_field :password, autocomplete: "current-password",placeholder: "password", class: "form-control" 
+    %button.btn.btn-lg.btn-primary.btn-block{:name => "Submit", :type => "Submit",id: "sign_in_button"} log_in
 = render "devise/shared/links"
