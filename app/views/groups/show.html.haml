@@ -45,7 +45,7 @@
                               = form_tag("/groups/#{@group.id}/lists/#{list.id}/cards/#{card.id}",name: "edit-card",id: "edit-card-form", class: "edit-card-form",method: :PATCH) do
                                 .window-header
                                   .window-header__title
-                                    = text_field_tag :title, card.title,required: "required", placeholder: "例)毎日の読書" ,id: "edit-card-title-field"
+                                    = text_field_tag :title, card.title,required: "required",maxlength: "20" ,placeholder: "例)毎日の読書" ,id: "edit-card-title-field"
                                 .window-content
                                   .window-content__discripition-title
                                     .window-content__discripition-title__icon
@@ -114,7 +114,7 @@
                 .task-box-add__text
                   リストの追加
                 .task-box-add__hidden-post
-                  = f.text_field :text, class: "task-box-add__hidden-post__form"
+                  = f.text_area :text, class: "task-box-add__hidden-post__form"
                   = f.hidden_field :group_id, value: @group.id
                 = f.submit "作成する", class: "task-box-add__hidden-post__button"
 
