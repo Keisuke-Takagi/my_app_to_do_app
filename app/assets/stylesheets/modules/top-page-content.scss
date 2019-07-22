@@ -447,13 +447,13 @@ td{
             width: 100%;
             background-color: #fff;
             &__form{
-              line-height: 58px;
               text-align: center;
               opacity: 0.6;
               background-color: whitesmoke;
               width: 100%;
               color: black;
               display: none;
+              white-space: normal;
             }
             &__button{
               display: block;

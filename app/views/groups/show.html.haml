@@ -12,7 +12,7 @@
                   .task_title
                     = list.text
                   = form_for [@group, list], url: "/groups/#{@group_id}/lists/#{list.id}", html:{ class: "task_title-form"} do |f|
-                    = f.text_field :text, class: "task_title-form__field"
+                    = f.text_area :text,maxlemgth: "18",class: "task_title-form__field"
                     = button_tag  type: "submit", class: "submit_button" do
                       = fa_icon 'edit', class: 'edit_title_icon' ,id: "edit_title_icon"
                   = form_for [@group, list], url: "/groups/#{@group_id}/lists/#{list.id}", method: "DELETE", html:{ class: "task_delte-form"} do |f|
@@ -99,7 +99,7 @@
                   .task-box-add__text
                     リストの追加
                   .task-box-add__hidden-post
-                    = f.text_field :text, class: "task-box-add__hidden-post__form"
+                    = f.text_area :text,maxlength: "18" ,class: "task-box-add__hidden-post__form"
                     = f.hidden_field :group_id, value: @group.id
                   = f.submit "作成する", class: "task-box-add__hidden-post__button"
 - else
