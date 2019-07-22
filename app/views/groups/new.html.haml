@@ -3,7 +3,7 @@
   = form_for @group, id: "group-form-create"  do |f|
     - if @group.errors.any?
       .group-wrapper__errors
-        %h2.group-wrapper__errors__message= "#{@group.errors.full_messages.count}件のエラーが発生しました。"
+        %h2.group-wrapper__errors__message= "#{@group.errors.full_messages.count}箇所の必須項目が入力されていません。"
     .group-wrapper__container
       .group-wrapper__container__content
         .group-wrapper__container__content__box
