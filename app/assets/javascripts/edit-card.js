@@ -12,7 +12,7 @@ $(document).on('turbolinks:load',function(){
         if(each_list_id >  this_form_data_id){
           sessionStorage.setItem("list_id_next", each_list_id)
           return false
-        };
+        }
       });
       var list_id_next = Number(sessionStorage.getItem("list_id_next"))
       var $dir = location.href.split("/");  
@@ -46,10 +46,6 @@ $(document).on('turbolinks:load',function(){
       var url = "/groups/" + $dir2 + "/lists/" + list_id_previous + "/cards/" +  card_id__hidden
       move_card__form.attr("action", url)
       $(parent_2).find(".card-list_id__hidden").attr("value", list_id_previous)
-    });
-    $(".edit-card-button").on("click", function(){
-    })
-    $(".move-card-form").on("submit", function(){
     });
   });
 });

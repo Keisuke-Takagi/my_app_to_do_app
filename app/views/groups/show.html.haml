@@ -111,10 +111,10 @@
           .task-box-add-wrapper
             .task-box-add-wrapper__content
               .task-box-add{id: "task-box-add"}
-                .task-box-add__text
+                .task-box-add__text{id: "task-box-add-text-list-none"}
                   リストの追加
                 .task-box-add__hidden-post
-                  = f.text_area :text, class: "task-box-add__hidden-post__form"
+                  = f.text_area :text, class: "task-box-add__hidden-post__form", id: "task-box-add__hidden-post__form--list_none"
                   = f.hidden_field :group_id, value: @group.id
                 = f.submit "作成する", class: "task-box-add__hidden-post__button"
 

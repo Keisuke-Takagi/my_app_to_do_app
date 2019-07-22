@@ -31,7 +31,7 @@ $(document).on('turbolinks:load',function(){
       $(task_box_add_form).css("display", "block");
       $(task_box_add_text_area).css("display", "block");
       $(task_box_add_button_submit).css("display", "block");
-    })
+    });
     $(".task-box-add__hidden-post__button").on("click", function(){
       var task_box_add = $(this).parent();
       var task_box_add_form = $(task_box_add).find(".task-box-add__hidden-post");
@@ -59,7 +59,7 @@ $(document).on('turbolinks:load',function(){
         });
       });
       }
-    })
+    });
 
     $(".window-content__discription-content__show").on("click", function(){
       $(this).css({"display" : "none"})
@@ -78,14 +78,12 @@ $(document).on('turbolinks:load',function(){
       if(new_card_title_text_area == ""){
         swal ("カードのタイトルを入力して下さい", "" ,"error")
         $(".swal-button-container").on("click", function(){
-        $('.new_card').prop('disabled',false)
-        $(document).on("click",".swal-button--confirm" ,function(){
-          $(".new-card-buttons__card-new-button").removeAttr("disabled");
-        });
+          $(document).on("click",".swal-button--confirm" ,function(){
+            $(".new-card-buttons__card-new-button").removeAttr("disabled");
+          });
         });
       }else{}
     });
   });
-
 });
 

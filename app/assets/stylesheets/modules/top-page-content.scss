@@ -427,7 +427,6 @@ td{
       visibility: hidden;
       &__content{
         opacity: 1;
-        margin-top: 20px;
         .task-box-add{
           cursor: pointer;
           padding: 6px 8px;
@@ -436,16 +435,32 @@ td{
           padding-right: 3px;
           width: 272px;
           visibility: visible;
+          #task-box-add-text-list-none{
+            line-height: 58px;
+            text-align: center;
+            opacity: 0.6;
+            background-color: #6b778c;
+            margin-top: 20px;
+          }
           &__text{
             line-height: 58px;
             text-align: center;
             opacity: 0.6;
             background-color: #6b778c;
-           
           }
           &__hidden-post{
             width: 100%;
             background-color: #fff;
+            #task-box-add__hidden-post__form--list_none{
+              text-align: left;
+              opacity: 0.6;
+              background-color: whitesmoke;
+              width: 100%;
+              color: black;
+              display: none;
+              white-space: normal;
+              margin-top: 20px;
+            }
             &__form{
               text-align: left;
               opacity: 0.6;

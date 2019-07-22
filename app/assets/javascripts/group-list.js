@@ -39,7 +39,7 @@ $(document).on('turbolinks:load',function(){
       swal("新規作成するにはタイトルの記入が必要です", "", "error")
       $(document).on("click", function(){
         location.reload()
-      })
+      });
     }else{}
   });
 });
