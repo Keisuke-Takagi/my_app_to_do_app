@@ -13,7 +13,7 @@ pid "#{app_path}/tmp/pids/unicorn.pid"
 listen 3000
 
 
-stderr_path "#{app_path}/log/unicorn.stderr.log"
+stderr_path "#{app_path}/log/unicorn.stderr-error.log"
 
 
 stdout_path "#{app_path}/log/unicorn.stdout.log"
