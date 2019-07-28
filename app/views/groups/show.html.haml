@@ -104,7 +104,7 @@
                   = f.submit "作成する", class: "task-box-add__hidden-post__button"
 - else
   .content-main
-    = render 'shared/sidebar'
+
     %table.table
       = form_for @list, url: "/groups/#{@group_id}/lists" do |f|
         %td

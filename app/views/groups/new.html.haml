@@ -19,7 +19,7 @@
                       招待するメンバー
                       .new-group-form__box__field-group__field__member-list__text__user-collection-box
                         = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false
-                    - @group.users.each do |mem|
+                   
         .group-wrapper__container__content__button-box
           = f.submit "作成", class: "btn btn-success btn-primary btn-lg btn-block", id: "create-button"
 
