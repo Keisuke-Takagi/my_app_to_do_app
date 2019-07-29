@@ -15,7 +15,8 @@
             %li.header_menu_tag
               
             %li.header_menu_tag
-              = link_to "ログアウト", "http://localhost:3000/users/sign_out", method: :delete
+              = link_to(destroy_user_session_path, method: :delete) do
+                ログアウト
             %li.header_menu_tag
               = link_to groups_path do
                 グループ一覧
